@@ -1,0 +1,35 @@
+CREATE TABLE admins (
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    name TEXT NOT NULL,
+    username TEXT NOT NULL UNIQUE,
+    password TEXT NOT NULL
+);
+
+CREATE TABLE students (
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    first_name TEXT NOT NULL,
+    last_name TEXT NOT NULL,
+    email TEXT,
+    gender TEXT,
+    enrollment_date DATE
+);
+
+CREATE TABLE attendance (
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    student_id INTEGER,
+    attendance_date DATE,
+    status TEXT,
+    FOREIGN KEY (student_id) REFERENCES students(id)
+);
+
+-- Insert an admin with a hashed password for security
+INSERT INTO admins (name, username, password)
+VALUES ('admin', 'admin', 'admin123');
+
+-- Insert a student with a valid enrollment date format
+INSERT INTO students (first_name, last_name, email, gender, enrollment_date)
+VALUES ('Alice', 'Johnson', 'alice.johnson@example.com', 'Female', '2024-01-10');
+
+-- Insert an attendance record with a valid attendance date format
+INSERT INTO attendance (student_id, attendance_date, status)
+VALUES (1, '2024-11-24', 'Present');
