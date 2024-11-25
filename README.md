@@ -63,6 +63,7 @@ Install Werkzeug version 2.2.2:
 ```bash
 pip install werkzeug==2.2.2
 
+--- 
 ### Running the Application
 Step 1: Start the Application
 Run the app using either of the following methods:
@@ -78,6 +79,7 @@ or
 ```bash
 flask run
 
+--- 
 
 # Step 2: Access the Application
 After running, the application will typically be available at:
@@ -85,7 +87,7 @@ After running, the application will typically be available at:
 ```bash
 http://127.0.0.1:5000/
 
-
+---
 
 ### Project Structure
 # Your project folder should look like this:
@@ -98,6 +100,8 @@ http://127.0.0.1:5000/
 ├── templates/          # HTML templates
 └── static/             # Static files (CSS, JS, images)
 
+--- 
+
 ### Additional Notes
 # Activate the Virtual Environment: Always activate the virtual environment before running the application or installing new packages.
 Environment Variables: Use a .env file to store sensitive configurations like secret keys or database URIs. Example .env file:
@@ -108,19 +112,27 @@ FLASK_ENV=development
 SECRET_KEY=your_secret_key_here
 DATABASE_URI=sqlite:///app.db
 
+---
+
 # Deactivate the Virtual Environment: When done, deactivate the virtual environment:
 
 ```bash
 deactivate
+
+---
 
 # Freeze Requirements: To create a requirements.txt file listing all dependencies, run:
 
 ```bash
 pip freeze > requirements.txt
 
+---
+
 # Install from Requirements: If sharing the project, others can install the same dependencies by running:
 
 ```bash
 pip install -r requirements.txt
+
+--- 
 
 ### Happy Coding! 🚀
