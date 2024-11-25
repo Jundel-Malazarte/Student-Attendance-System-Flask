@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Admin Login</title>
+    <title>Student Login</title>
     <!-- W3.CSS and Bootstrap CSS Links -->
     <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/css/bootstrap.min.css">
@@ -11,7 +11,7 @@
     <style>
         body {
             font-family: Arial, sans-serif;
-            background-color: #eceff1;
+            background-color: #f8f9fa;
             height: 100vh;
             display: flex;
             justify-content: center;
@@ -86,29 +86,33 @@
 <body>
 
     <div class="login-container">
-        <h1>Admin Login</h1>
+        <h1>Student Login</h1>
 
-        <!-- Display Flash Messages (Success, Error) -->
+        <!-- Display flash messages -->
         {% with messages = get_flashed_messages(with_categories=true) %}
-        {% if messages %}
-            {% for category, message in messages %}
-                <div class="alert alert-{{ category }} alert-dismissible fade show" role="alert">
-                    {{ message }}
-                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+            {% if messages %}
+                <div class="flash-message">
+                    {% for category, message in messages %}
+                        <p>{{ message }}</p>
+                    {% endfor %}
                 </div>
-            {% endfor %}
-        {% endif %}
+            {% endif %}
         {% endwith %}
 
         <!-- Admin Login Form -->
-        <form method="POST" action="{{ url_for('login') }}">
-            <input type="text" name="username" placeholder="Username" required>
-            <input type="password" name="password" placeholder="Password" required>
+        <form action="{{ url_for('login') }}" method="POST">
+            <label for="student_id">ID Number:</label>
+            <input type="text" id="student_id" name="ID Number" required>
+
+            <label for="password">Password:</label>
+            <input type="password" id="password" name="password" required>
+
             <button type="submit">Login</button>
         </form>
+
+        <!-- Switch to Student Login -->
+        <a href="index.html" class="switch-link">Switch to Admin</a>
     </div>
 
-    <!-- Bootstrap JS (for alerts to close) -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>

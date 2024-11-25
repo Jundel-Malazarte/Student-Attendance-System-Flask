@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Add Student</title>
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/css/bootstrap.min.css">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #eceff1;
+            margin: 20px;
+        }
+        header {
+            display: flex;
+            justify-content: end;
+            align-items: center;
+            margin-bottom: 30px;
+            padding: 10px 20px;
+            border-radius: 5px;
+        }
+        header a {
+            text-decoration: none;
+            color: white;
+            font-weight: bold;
+            margin-right: 10px;
+        }
+        header a:hover {
+            color: #f1f1f1;
+        }
+        .container {
+            max-width: 500px;
+            margin: auto;
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+        }
+        h2 {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        form label {
+            display: block;
+            margin: 5px 0;
+            font-weight: bold;
+        }
+        form input, form select {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 15px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            font-size: 14px;
+        }
+        form button {
+            width: 100%;
+            background-color: #28a745;
+            color: white;
+            border: none;
+            padding: 10px 15px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+        form button:hover {
+            background-color: #218838;
+        }
+        .alert {
+            margin-bottom: 15px;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <a href="{{ url_for('dashboard') }}" class="w3-button w3-grey">Home</a>
+        <a href="{{ url_for('view_attendance') }}" class="w3-button w3-blue">View Attendance</a>
+        <a href="{{ url_for('add_student') }}" class="w3-button w3-green">Add Student</a>
+        <a href="{{ url_for('logout') }}" class="w3-button w3-red">Logout</a>
+    </header>    
+
+    <div class="container">
+        <h2>Add Student</h2>
+
+        <!-- Display Flash Messages (Success, Error) -->
+        {% with messages = get_flashed_messages(with_categories=true) %}
+            {% if messages %}
+                {% for category, message in messages %}
+                    <div class="alert alert-{{ category }} alert-dismissible fade show" role="alert">
+                        {{ message }}
+                        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                    </div>
+                {% endfor %}
+            {% endif %}
+        {% endwith %}
+
+        <form action="{{ url_for('add_student') }}" method="POST" class="shadow-sm">
+            <!-- Student ID -->
+            <label for="student_id">ID Number:</label>
+            <input 
+                type="text" 
+                name="student_id" 
+                id="student_id" 
+                placeholder="Enter Student ID" 
+                required>
+            
+            <!-- Last Name -->
+            <label for="lastname">Last Name:</label>
+            <input 
+                type="text" 
+                name="lastname" 
+                id="lastname" 
+                placeholder="Enter Last Name" 
+                required>
+            
+            <!-- First Name -->
+            <label for="firstname">First Name:</label>
+            <input 
+                type="text" 
+                name="firstname" 
+                id="firstname" 
+                placeholder="Enter First Name" 
+                required>
+            <!-- Gender -->
+            <label for="gender">Gender:</label>
+            <select name="gender" id="gender" required>
+                <option value="" disabled selected>Select a gender</option>
+                <option value="Male">Male</option>
+                <option value="Female">Female</option>
+            </select>
+                        
+            <!-- Course -->
+            <label for="course">Course:</label>
+            <select name="course" id="course" required>
+                <option value="" disabled selected>Select a course</option>
+                <option value="BSCS">Computer Science</option>
+                <option value="BSIT">Information Technology</option>
+                <option value="BSCE">Computer Engineering</option>
+                <option value="BSBA">Business Administration</option>
+                <option value="BSED">Education</option>
+            </select>
+            
+            <!-- Year Level -->
+            <label for="year_level">Year Level:</label>
+            <select name="year_level" id="year_level" required>
+                <option value="" disabled selected>Select year level</option>
+                <option value="1">1</option>
+                <option value="2">2</option>
+                <option value="3">3</option>
+                <option value="4">4</option>
+            </select>         
+
+            <!-- Submit Button -->
+            <button type="submit">Add Student</button>
+        </form>
+    </div>
+
+    <!-- Include Bootstrap JS (needed for alerts to close) -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
